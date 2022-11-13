@@ -1,9 +1,15 @@
-const express = require('express')
+const express = require('express') // this is new body parser included in express
 const app = express()
 const port = 4000
 
-const cors = require('cors');
+const cors = require('cors'); // getting cors
 const bodyParser = require('body-parser');
+
+// server 
+
+// this included to avoid cors error
+
+// this is used as a bodyparser now with new update 
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
@@ -18,17 +24,22 @@ res.header("Access-Control-Allow-Headers",
 next();
 });
 
+// api for hello world to get method that sends json back to the client when invoked
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-
+// when data gets passed up this logs it into console
 app.post('/api/books', (req, res)=> {
-    console.log(req.body);
+    console.log(req.body);  // pulls this middleware
    res.send ('Data Recieved');
 })
 
+
+// api for books to get method that sends json back to the client when invoked
 app.get('/api/books', (req,res)=>{
+  
+   // json books hardcoded
     const books = [             
             {
             "title": "Learn Git in a Month of Lunches",
@@ -64,13 +75,14 @@ app.get('/api/books', (req,res)=>{
             "categories": []
             }
             ]
-    
+     // json pass down to server (response)
     res.json({
         myBooks:books
 
     })
 })
 
+// listen port
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
