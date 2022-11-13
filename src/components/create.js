@@ -1,10 +1,16 @@
+// imports react
 import React from "react";
-import axios from "axios";
+import axios from "axios";  //talks http
 
+// class for the create component// extends and export word used to export app.js
 export class Create extends React.Component {
+    
+      // form
 
     constructor(){
         super();
+        
+        // must bind
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onChangeBookTitle = this.onChangeBookTitle.bind(this);
         this.onChangeBookCover = this.onChangeBookCover.bind(this);
@@ -23,10 +29,15 @@ export class Create extends React.Component {
         ${this.state.author}`);
         
         const book = {
+         //object that sends data
+            
             title:this.state.title,
             cover:this.state.cover,
             author:this.state.author
         }
+        
+  // sends to the server the url with the object and data it has, app.post in the server is then invoked
+
 axios.post('http://localhost:4000/api/books',book)
 .then()
 .catch();
@@ -37,6 +48,8 @@ axios.post('http://localhost:4000/api/books',book)
             author:''
         })
     }
+    
+// constructor
 
     onChangeBookTitle(e){
         this.setState({
@@ -55,6 +68,9 @@ axios.post('http://localhost:4000/api/books',book)
     }
 
     render() {
+        
+           // returning component
+
         return (
             <div>
                 <h3>Hello from Create Component!</h3>
@@ -89,6 +105,6 @@ axios.post('http://localhost:4000/api/books',book)
                     <input type="submit" value="Add Book" />
                 </form>
             </div>
-        );
-    }
-}
+        ); //return
+    } //render
+} //class
